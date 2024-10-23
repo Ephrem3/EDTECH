@@ -1,0 +1,90 @@
+ 
+### ACM_SIGAI Project Command Summary
+
+#### Docker Commands
+1. Build and Start Services:
+   docker-compose up --build
+
+2. Start Services in Detached Mode:
+   docker-compose up -d
+
+3. Check Docker Container Status:
+   docker-compose ps
+
+4. Stop Services:
+   docker-compose down
+
+5. Execute Command in Django Container:
+   docker-compose exec django python manage.py migrate
+
+6. Access PostgreSQL Database:
+   docker-compose exec ACM_SIGAI_db psql -U postgres -d acm_db
+
+7. Access Django Shell:
+   docker-compose exec django python manage.py shell
+
+8. View Logs of a Service:
+   docker-compose logs django
+
+#### Django Commands
+1. Start Django Development Server:
+   python manage.py runserver 0.0.0.0:8000
+
+2. Make Migrations for a Specific App:
+   python manage.py makemigrations <app_name>
+
+3. Apply Migrations:
+   python manage.py migrate
+
+4. Create a Superuser:
+   python manage.py createsuperuser
+
+5. Check Database Tables:
+   \dt
+
+6. Show Django App Configuration:
+   python manage.py showmigrations
+
+7. List All Installed Apps:
+   python manage.py diffsettings
+
+8. Clear the Database (Warning: Destructive!):
+   python manage.py flush
+
+#### PostgreSQL Commands
+1. Connect to PostgreSQL:
+   docker-compose exec db psql -U postgres -d acm_db
+
+2. List All Databases:
+   \l
+
+3. List Database Tables:
+   \dt
+
+4. Describe Table Structure:
+   \d <table_name>
+
+5. Query Data from a Table:
+   SELECT * FROM <table_name>;
+
+6. Exit PostgreSQL Shell:
+   \q
+
+#### Other Useful Commands
+1. Check Docker Images:
+   docker images
+
+2. Remove Unused Docker Resources:
+   docker system prune
+
+3. Restart Docker Services:
+   docker-compose restart
+
+4. Remove a Specific Container:
+   docker rm <container_name>
+
+5. Remove a Specific Image:
+   docker rmi <image_name>
+
+
+docker-compose run django python manage.py showmigrations

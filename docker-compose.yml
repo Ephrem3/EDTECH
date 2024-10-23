@@ -1,0 +1,25 @@
+services:
+  
+  ACM_SIGAI_db:
+    image: postgres
+    container_name: ACM_SIGAI_db
+    environment:
+      - POSTGRES_DB=acm_db
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=123456
+    ports:
+      - "5432:5432"
+  django:
+    build: .
+    container_name: ACM_SIGAI_container
+    image: acm_sigai
+    ports:
+      - "8000:8000"
+    volumes:
+      - .:/ACM_SIGAI
+    expose:
+      - "8000"
+    command: python manage.py runserver 0.0.0.0:8000
+
+    depends_on:
+      - ACM_SIGAI_db
