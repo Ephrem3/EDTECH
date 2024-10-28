@@ -23,3 +23,14 @@ services:
 
     depends_on:
       - ACM_SIGAI_db
+
+  PGAdmin:
+    image: dpage/pgadmin4
+    container_name: PGAdmin
+    environment:
+      PGADMIN_DEFAULT_EMAIL: kephrem6@gmail.com
+      PGADMIN_DEFAULT_PASSWORD: 123456
+    ports:
+      - "5050:80"
+    depends_on:
+      - ACM_SIGAI_db
