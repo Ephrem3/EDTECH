@@ -9,6 +9,7 @@ services:
       - POSTGRES_PASSWORD=123456
     ports:
       - "5432:5432"
+
   django:
     build: .
     container_name: ACM_SIGAI_container
