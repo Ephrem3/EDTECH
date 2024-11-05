@@ -11,19 +11,30 @@ services:
       - "5433:5432"
 
   django:
-    build: .
+    build: 
+      context: ./backend  
+      dockerfile: Dockerfile
     container_name: ACM_SIGAI_container
     image: acm_sigai
     ports:
       - "8000:8000"
     volumes:
-      - .:/ACM_SIGAI
+      - ./backend:/ACM_SIGAI
     expose:
       - "8000"
     command: python manage.py runserver 0.0.0.0:8000
-
     depends_on:
       - ACM_SIGAI_db
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: ACM_SIGAI_frontend
+    volumes:
+      - ./frontend:/frontend 
+    ports:
+      - "3000:3000"
 
   PGAdmin:
     image: dpage/pgadmin4
@@ -35,3 +46,6 @@ services:
       - "5050:80"
     depends_on:
       - ACM_SIGAI_db
+
+volumes:
+  ACM_SIGAI: 
