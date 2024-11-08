@@ -20,12 +20,12 @@ class teacherRepository(ITeacherRepository):
         teacher.save()
         return teacher
     
-    def delete_teacher(self, teacher_id):
-        teacher = teacher.objects.get(teacher_id=teacher_id)
+    def delete_teacher(self, teacher_NETID):
+        teacher = teacher.objects.get(teacher_NETID=teacher_NETID)
         teacher.is_active = False
         teacher.save()
         return teacher
 
-    def get_teacher_by_id(self, teacher_id):
-        return teacher.objects.get(teacher_id=teacher_id)
+    def get_teacher_by_id(self, teacher_NETID):
+        return teacher.objects.get(teacher_NETID=teacher_NETID)
     

@@ -6,3 +6,5 @@ from .Question import Question
 from .Student import Student
 from .Student_answer import Student_answer
 from .Teacher import Teacher
+from .UserManager import User
+from .UserManager import UserManager

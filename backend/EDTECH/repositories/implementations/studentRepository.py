@@ -20,8 +20,8 @@ class studentRepository(IStudentRepository):
         student.save()
         return student
     
-    def delete_student(self,student_id):
-        student = student.objects.get(student_id=student_id)
+    def delete_student(self,student_NETID):
+        student = student.objects.get(student_NETID=student_NETID)
         student.is_active = False
         student.save()
         return student
@@ -29,8 +29,8 @@ class studentRepository(IStudentRepository):
     def get_all_students(self):
         return student.objects.filter(is_active=True)
     
-    def get_student_by_id(self, student_id):
-        return student.objects.get(student_id=student_id)
+    def get_student_by_id(self, student_NETID):
+        return student.objects.get(student_NETID=student_NETID)
 
     
     

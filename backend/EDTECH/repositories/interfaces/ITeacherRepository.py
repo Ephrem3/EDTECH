@@ -18,14 +18,14 @@ class ITeacherRepository(ABC):
         pass
 
     @abstractmethod
-    def delete_teacher(self, teacher_id):
+    def delete_teacher(self, teacher_NETID):
         pass
 
     @abstractmethod
     def get_teacher_by_email(self, email):
         pass
     
-    def get_teacher_by_id(self, teacher_id):
+    def get_teacher_by_id(self, teacher_NETID):
         pass
     
     

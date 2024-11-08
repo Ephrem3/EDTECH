@@ -7,7 +7,7 @@ class Course(models.Model):
     course_code= models.CharField(max_length=12, blank=False)
     course_description= models.TextField(max_length=255, blank=True)
     capacity = models.IntegerField(blank=False)
-    teacher_id = models.ForeignKey('Teacher', on_delete=models.CASCADE)
+    teacher_NETID = models.ForeignKey('Teacher', on_delete=models.CASCADE)
     is_active = models.BooleanField(default=False)
     start_date = models.DateTimeField(auto_now=False)
     end_date = models.DateTimeField(auto_now=False)

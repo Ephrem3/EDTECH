@@ -2,7 +2,7 @@ from django.db import models
 
 
 class Student(models.Model):
-    student_id = models.AutoField(primary_key=True)
+    student_NETID = models.AutoField(primary_key=True)
     user_name= models.CharField(max_length=50, unique = True, blank=False)
     first_name = models.CharField(max_length=32, blank=False)
     last_name = models.CharField(max_length= 32, blank=True)

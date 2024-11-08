@@ -19,14 +19,14 @@ class IStudentRepository(ABC):
         pass
 
     @abstractmethod
-    def delete_student(self, student_id):
+    def delete_student(self, student_NETID):
         pass
 
     @abstractmethod
     def get_student_by_email(self, email):
         pass
 
-    def get_student_by_id(self, student_id):
+    def get_student_by_id(self, student_NETID):
         pass
     
     

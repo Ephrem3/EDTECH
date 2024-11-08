@@ -1,4 +1,5 @@
 from django.contrib import admin
+from .models import User
 
 
 from .models import Question
@@ -17,5 +18,8 @@ from .models import Teacher
 admin.site.register(Teacher)
 from .models import Student_answer
 admin.site.register(Student_answer)
+class CustomUserAdmin(admin.ModelAdmin):
+    model = User
 
+admin.site.register(User, CustomUserAdmin)
     
