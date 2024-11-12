@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 
 from pathlib import Path
 from datetime import timedelta
+import sys
 
 
 
@@ -156,11 +157,23 @@ CORS_ALLOWS_CREDENTIALS = True
 # JWT
 
 SIMPLE_JWT = { 
+
     'ACCESS_TOKEN_LIFETIME': timedelta(minutes=10),
     'REFRESH_TOKEN_LIFETIME': timedelta(days=1),
     'ROTATE_REFRESH_TOKENS': True,
     'BLACKLIST_AFTER_ROTATION': True,
-
+    'AUTH_HEADER_TYPES': ('Bearer',),
+    'USER_ID_FIELD': 'NETID',
+    'USER_ID_CLAIM': 'NETID',
 }
 
 AUTH_USER_MODEL = 'EDTECH.User'
+
+if 'test' in sys.argv:
+    CSRF_COOKIE_SECURE = False
+    CSRF_COOKIE_HTTPONLY = False
+    CSRF_COOKIE_NAME = 'csrftoken'
+    CSRF_TRUSTED_ORIGINS = []
+    SESSION_COOKIE_SECURE = False
+    
+

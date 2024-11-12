@@ -6,15 +6,17 @@ from .models import User
 from .serializer import UserSerializer
 from rest_framework_simplejwt.tokens import AccessToken, RefreshToken, TokenError
 from rest_framework import status
-from rest_framework.permissions import IsAuthenticated
+from rest_framework.permissions import IsAuthenticated, AllowAny
 
 class RegisterView(APIView):
+    permission_classes = [AllowAny]
     def post(self, request):
         serializer = UserSerializer(data = request.data)
         serializer.is_valid(raise_exception=True)
         serializer.save()
-        return Response(serializer.data)
+        return Response(serializer.data, status=status.HTTP_201_CREATED)
 class Loginview(APIView):
+    permission_classes = [AllowAny]
     def post(self, request):
         NETID = request.data["NETID"]
         password = request.data["password"]
@@ -23,19 +25,18 @@ class Loginview(APIView):
             user = User.objects.get(NETID = NETID)  
         except User.DoesNotExist:
             raise AuthenticationFailed("Account does  not exist")
-        if user is None:
-            raise AuthenticationFailed("User does not exist")
         if not user.check_password(password):
             raise AuthenticationFailed("Incorrect Password")
         access_token = AccessToken.for_user(user)
         refresh_token =RefreshToken.for_user(user)
         return Response({
-            "access_token" : access_token,
-            "refresh_token" : refresh_token
-        })
+            "access_token" : str(access_token),
+            "refresh_token" : str(refresh_token)
+        }, status=status.HTTP_200_OK)
     
 class LogoutView(APIView):
-    def post(self, request):
+    permission_classes = [IsAuthenticated] 
+    def post(self, request, *args, **kwargs):
         try:
             refresh_token = request.data['refresh_token']
             if refresh_token:
